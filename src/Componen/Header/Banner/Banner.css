@@ -1,0 +1,28 @@
+.banner-aria{
+    background-image:url(https://i.ibb.co/t4Ts6kK/bannerbackground.png);
+    background-size: cover;
+    background-position: 50%;
+    width: 100%;
+    height: 500px;
+  
+
+}
+.banner-content{
+    padding: 160px 0;
+}
+.banner-content h2{
+    font-size: 50px;
+    padding-bottom: 15px;
+}
+.banner-input input{
+    padding:10px 40px;
+    border-radius: 30px;
+    border: none;
+    width: 35%;
+}
+.banner-input button{
+    padding: 6px 40px;
+    margin-left: -35px;
+    border-radius: 30px;
+    font-size: 18px;
+}

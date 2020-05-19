@@ -1,0 +1,57 @@
+const Lunch =[
+    {
+        'id':'ONION555',
+        'category':'Lunch',
+        'name':'Honey Soy Salmon',
+        'title':'How we dream about our future',
+        'details':'Toothsome, strictly used, refers to edible and pleasant food, or you could even write tasty, appetizing or delicious instead, something really pleasant to the sense of taste. But you will see it very often meaning healthy food, good tasting food that has something more than good taste going for it.',
+        'img':'https://i.ibb.co/pRqmv4Q/lunch6.png',
+        'price':19.9,
+    },
+    {
+        'id':'ONION556',
+        'category':'Lunch',
+        'name':'Indian Lunch',
+        'title':'How we dream about our future',
+        'details':'Toothsome, strictly used, refers to edible and pleasant food, or you could even write tasty, appetizing or delicious instead, something really pleasant to the sense of taste. But you will see it very often meaning healthy food, good tasting food that has something more than good taste going for it.',
+        'img':'https://i.ibb.co/hR5vPJf/lunch4.png',
+        'price':15.99,
+    },
+    {
+        'id':'ONION557',
+        'category':'Lunch',
+        'name':'Beaf Steak',
+        'title':'How we dream about our future',
+        'details':'Toothsome, strictly used, refers to edible and pleasant food, or you could even write tasty, appetizing or delicious instead, something really pleasant to the sense of taste. But you will see it very often meaning healthy food, good tasting food that has something more than good taste going for it.',
+        'img':'https://i.ibb.co/BVxLzNc/lunch5.png',
+        'price':7.99,
+    },
+    {
+        'id':'ONION558',
+        'category':'Lunch',
+        'name':'Healthy Meal Plan',
+        'title':'How we dream about our future',
+        'details':'Toothsome, strictly used, refers to edible and pleasant food, or you could even write tasty, appetizing or delicious instead, something really pleasant to the sense of taste. But you will see it very often meaning healthy food, good tasting food that has something more than good taste going for it.',
+        'img':'https://i.ibb.co/0r2zR9h/lunch1.png',
+        'price':9.99,
+    },
+    {
+        'id':'ONION559',
+        'category':'Lunch',
+        'name':'Trragon-Rubbed-Salmon',
+        'title':'How we dream about our future',
+        'details':'Toothsome, strictly used, refers to edible and pleasant food, or you could even write tasty, appetizing or delicious instead, something really pleasant to the sense of taste. But you will see it very often meaning healthy food, good tasting food that has something more than good taste going for it.',
+        'img':'https://i.ibb.co/Nt2d10s/lunch3.png',
+        'price':23.99,
+    },
+    {
+        'id':'ONION566',
+        'category':'Lunch',
+        'name':'Fried Chicken Bent',
+        'title':'How we dream about our future',
+        'details':'Toothsome, strictly used, refers to edible and pleasant food, or you could even write tasty, appetizing or delicious instead, something really pleasant to the sense of taste. But you will see it very often meaning healthy food, good tasting food that has something more than good taste going for it.',
+        'img':'https://i.ibb.co/h2dVLhz/lunch2.png',
+        'price':12.99,
+    }
+]
+export default Lunch;

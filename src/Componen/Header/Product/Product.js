@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Product.css'
+import Breakfast from '../fakeData/Breakfast';
+import FoodItem from '../../FoodItem/FoodItem';
 
 const Product = () => {
+  const data = Breakfast;
+  const [food, setFood] = useState(data);
     return (
         <section className="food-catagories-aria">
           <div className="container">
@@ -17,7 +21,15 @@ const Product = () => {
                     <p className="see-all">See All</p>
                   </div>
               </div>
-              <div className="row"></div>
+              <div className="row  food-item">
+              
+             
+                {
+                  food.map(fd => <FoodItem food ={fd}></FoodItem>)
+                }
+               
+                </div>
+             
 
           </div>
         </section>

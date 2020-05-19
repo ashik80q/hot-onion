@@ -1,0 +1,21 @@
+footer{
+    background-color: #000000;
+}
+.footer-menu ul{
+    float: left;
+}
+.footer-menu ul li a{
+    margin: 25px;
+    color: #fff;
+
+}
+.pt-3{
+    color: #b6b4b4;
+    position: relative;
+    right:190px;
+	
+}
+.ul-left{
+    position: relative;
+    left: 170px;
+}

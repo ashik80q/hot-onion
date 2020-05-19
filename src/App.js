@@ -5,6 +5,8 @@ import Header from './Componen/Header/Header';
 import Banner from './Componen/Header/Banner/Banner';
 import Product from './Componen/Header/Product/Product';
 import ChooseUs from './Componen/ChooseUs/ChooseUs';
+import TopFooter from './Componen/TopFooter/TopFooter';
+import Footer from './Componen/Footer/Footer';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
     <Banner></Banner>
     <Product></Product>
     <ChooseUs></ChooseUs>
+    <TopFooter></TopFooter>
+    <Footer></Footer>
 
     </div>
   );

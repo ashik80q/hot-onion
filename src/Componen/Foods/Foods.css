@@ -1,0 +1,14 @@
+.card{
+    border: none!important;
+  }
+  .single-item:hover {
+      box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    }
+
+    .link{
+        color:black;
+    }
+    .link:hover{
+        text-decoration: none;
+        color:black;
+    }

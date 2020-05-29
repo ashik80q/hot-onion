@@ -1,0 +1,35 @@
+.problem-top{
+    margin-top: 100px;
+}
+.red{
+    color:red;
+}
+.width{
+    width: 80%;
+    
+}
+.background{
+   margin-bottom: 10px;
+    border-radius: 4px;
+}
+.button2{
+    background:white;
+    cursor:text !important;
+}
+.mar{
+    margin:0;
+}
+.pay-details{
+    float:right;
+}
+.orders-items-aria {
+    max-height: 345px;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: scroll; /* Add vertical scrollbar */
+  }
+.cart{
+    height: 120px;
+}
+.text {
+    text-align: left;
+}

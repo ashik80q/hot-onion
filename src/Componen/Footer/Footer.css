@@ -19,3 +19,6 @@ footer{
     position: relative;
     left: 170px;
 }
+.footer-menu ul{
+    list-style: none;
+}

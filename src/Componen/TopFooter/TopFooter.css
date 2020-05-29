@@ -16,5 +16,9 @@
 .footer-top-menu-aria div ul li a{
 	font-size: 14px;
 	color: #fff;
-	line-height: 18px;
+    line-height: 18px;
+   list-style: none;
+}
+.footer-top-menu-aria div ul{
+    list-style: none;
 }

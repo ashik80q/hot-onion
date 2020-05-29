@@ -1,0 +1,16 @@
+.map-img img{
+    width: 80%;
+    height: 100%;
+}
+.text-align{
+    text-align: left;
+}
+.text-align-1{
+   text-align:left;
+   position: relative;
+   left: 10px;
+}
+.cart{
+    background-color: white;
+    border-radius: 5px;
+}

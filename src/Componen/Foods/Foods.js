@@ -3,7 +3,7 @@ import './Foods.css';
 import { Link } from 'react-router-dom';
 
 const Foods = (props) => {
-  console.log(props);
+  
   
     const { name, img, title, price, id } = props.food;
 

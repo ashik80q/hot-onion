@@ -1,30 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { getDatabaseCart, processOrder, } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
+import { getDatabaseCart,removeFromDatabaseCart,clearLocalShoppingCard } from '../../utilities/databaseManager';
 import './Cart.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../UseAuth/UseAuth';
+import {loadStripe} from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from '../CheckoutForm/CheckoutForm';
+
+
+
 
 
 const Cart = () => {
-    const [isSubmit, setSubmit] = useState(false);
+    const [isSubmit, setSubmit] = useState(null);
+    const [paid, setPaid] = useState({});
     const { register, handleSubmit, errors } = useForm();
     const [item,setItem] = useState([]);
+    
+    const auth = useAuth();
+    console.log("body",paid);
    
+    const onSubmit = data =>{
+        setSubmit(data);
+        
+       
+    }
 
 
     useEffect(()=>{
         const FoodItem = getDatabaseCart();
-        const FoodId = Object.keys(FoodItem);
-       const itemFood = FoodId.map(id =>{
-           const food = fakeData.find(fd => fd.id === id);
-           food.quantity = FoodItem[id];
-           return food;
-         })
-          setItem(itemFood);
-       
-          
+        const foodId = Object.keys(FoodItem);
+        console.log(foodId);
+        fetch('https://damp-garden-44080.herokuapp.com/getFoodId',{
+            method: 'POST',
+            headers: {
+            "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(foodId)
+        })
+        .then(res => res.json())
+        .then(data =>{
+              console.log("from database",data);
+              
+               const itemFood = foodId.map(id =>{
+                const food = data.find(fd => fd.id === id);
+                food.quantity = FoodItem[id];
+                return food;
+              })
+             
+              
+               setItem(itemFood);
+
+        })
+        
        },[])
+    console.log("item data",item);
     
   
 const checkOutItemHandler = (itemId, itemQuantity) =>{
@@ -34,34 +65,60 @@ const checkOutItemHandler = (itemId, itemQuantity) =>{
     }
         return item;
     })
-    const filteredItem = newItem.filter(item => (item.quantity > 0 ),  processOrder())
+    const filteredItem = newItem.filter(item => (item.quantity > 0 ),  removeFromDatabaseCart())
     setItem(filteredItem);
 }
    
 
-    const onSubmit = data =>{
-        setSubmit(true);
-
-    }
-    const handlePlaceOrder = () =>{
+   
+    const handlePlaceOrder = (paid) =>{
+      
+        const orderDetail = {
+            email: auth.user.email,
+            orderDetail:isSubmit,
+             payment: paid
+            } 
+        
+        fetch('https://damp-garden-44080.herokuapp.com/orderDetails',{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderDetail)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log("order place successful ",data);
+            alert('Successfully Done');
+           
+    
+          
+        })
         setItem([]);
-        processOrder();
-
+        
+        clearLocalShoppingCard();
     }
-
+    
     const totalQuantity = item.reduce((totalQ, food) => totalQ + food.quantity, 0);
     const subTotal = item.reduce((total, fd) => total + (fd.price * fd.quantity), 0);
     const tax= ((subTotal / 100) * 5);
     const fee = totalQuantity && 2;
     const total = (subTotal + tax + fee).toFixed(2);
 
+    const stripePromise = loadStripe('pk_test_51GrHMiIH5oRdtJYkGMUkxTM5ptQp03fV9bgiMFShYBl6If5gzT3GzHu46DvZjztJiLPZ3iny4Lb26P6jNeRSgZEJ006rLyYC1h');
+
+    const paymentFinished = (payment) => {
+        console.log( " Payment ",payment);
+      
+        setPaid(payment);
+    }
   
-    
+    console.log("Total quantity",totalQuantity);
     return (
         <div className="problem-top">
             <div className="container">
                 <div className="row">
-                    <div style={{marginBottom:"50px"}} className=" col-md-6" >
+                    <div style={{display: isSubmit ? 'none' : 'block'}} className=" col-md-6" >
                         <div className="width">
                             <h3>Delivery Details</h3>
                             
@@ -87,7 +144,13 @@ const checkOutItemHandler = (itemId, itemQuantity) =>{
                             </form>
                         </div>
                     </div>
-
+                    <div style={{display: isSubmit ? 'block' : 'none', backgroundColor:'lightyellow', borderRadius:'10px'}} className="col-md-6">
+                    <h3 className="mt-2 mb-3 text-center">Payment Details</h3>
+                    <Elements stripe={stripePromise}>
+                        <CheckoutForm markAsPaid={paymentFinished} />
+                        
+                    </Elements>
+                    </div>
                     
 
                     <div className="col-md-6 ">
@@ -127,12 +190,16 @@ const checkOutItemHandler = (itemId, itemQuantity) =>{
                             </div>
                             <div>
                                 {
-                                   isSubmit ?
+                                    totalQuantity > 0?
+
+                                      paid ?
                                            
                                             <Link to="/checkout">
 
-                                                <input onClick={handlePlaceOrder} className="btn btn-danger form-control" type="submit" value="Check out your food" />
+                                                <input onClick={() => handlePlaceOrder(paid)} className="btn btn-danger form-control" type="submit" value="Check out your food" />
                                             </Link>
+                                            :
+                                            <input disabled className="btn btn-secondary form-control" type="submit" value="Nothing to checkout" />
                                             :
                                             <input disabled className="btn btn-secondary form-control" type="submit" value="Nothing to checkout" />
                                         

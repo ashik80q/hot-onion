@@ -1,9 +1,12 @@
 import React from 'react';
 import Auth from '../UseAuth/UseAuth';
 
+
 const Profile = () => {
 
     const auth = Auth();
+     
+
    
     
     return (
@@ -28,6 +31,7 @@ const Profile = () => {
                    <h3 className="text-center m-auto">You are SignUp in Website</h3>
                 </div>
 
+            
             </div>
            
         </div>

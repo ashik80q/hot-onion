@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { getDatabaseCart } from '../../utilities/databaseManager';
 import Auth, { AuthProvider } from '../UseAuth/UseAuth';
-import { Link, NavLink } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 const Header = () => {
@@ -49,8 +49,8 @@ const auth = Auth();
                          auth.user?
                          <Link to='/profile'>
                          <a href="/"><button className="btn btn-danger">{auth.user.displayName}</button></a>
-                         </Link>
-                         :
+                         </Link>:
+                         
                          <Link to='/login'>
                          <a href="/"><button className="btn btn-danger">Sign up</button></a>
                          </Link>

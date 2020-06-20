@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faPlus, faMinus, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 import { addToDatabaseCart } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
+
 
 const SingleFood = () => {
     const [currentFood, setCurrentFood] = useState({});
@@ -13,8 +13,10 @@ const SingleFood = () => {
     const { id } = useParams();
 
    useEffect(()=>{
-        const Food = fakeData.find(fd => fd.id === id);
-        setCurrentFood(Food)
+       fetch('https://damp-garden-44080.herokuapp.com/food/' + id)
+       .then(res => res.json())
+       .then(data => setCurrentFood(data))
+        
    },[id])
 
 
@@ -27,6 +29,8 @@ const SingleFood = () => {
     const handleAddedFood = (currentFood) => {
        const count = currentFood.quantity = quantity;
       
+         console.log('single foods ', currentFood.id);
+         
         addToDatabaseCart(currentFood.id, count);
     }
 

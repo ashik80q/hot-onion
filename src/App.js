@@ -24,6 +24,7 @@ import Profile from './Componen/Profile/Profile';
 
 
 
+
 function App() {
 
   
@@ -66,9 +67,7 @@ function App() {
             <Header ></Header>
             <Profile></Profile>
           </Route>
-
         
-
         </Switch>
 
       
